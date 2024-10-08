@@ -5,10 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-
-  protected clickCount: number = 0;
-  protected buttonOnClick() {
-    this.clickCount++;
-  }
-}
+export class AppComponent {}

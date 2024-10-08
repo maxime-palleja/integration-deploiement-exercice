@@ -34,3 +34,10 @@ button {
 button:disabled {
   background-color: #cccccc;
 }
+.error-message {
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  margin-top: 4px;
+}

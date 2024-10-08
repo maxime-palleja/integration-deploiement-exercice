@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register-form',
@@ -9,38 +10,40 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class RegisterFormComponent {
   registerForm: FormGroup;
 
-  constructor(private form: FormBuilder) {
+  constructor(private form: FormBuilder, private toastr: ToastrService) {
     this.registerForm = this.form.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z \'-àâäéèêëïîôöùûüç]*')]],
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z \'-àâäéèêëïîôöùûüç]*')]],
       email: ['', [Validators.required, Validators.email]],
-      birthday: ['', [Validators.required]],
+      birthday: ['', [Validators.required, this.validateAge]],
       city: ['', [Validators.required, Validators.pattern('[a-zA-Z \'-àâäéèêëïîôöùûüç]*')]],
       postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]]
     });
-
-    this.registerForm.get('birthday')?.valueChanges.subscribe(date => {
-      if (this.calculateAge(date) < 18) {
-        this.registerForm.get('birthday')?.setErrors({tooYoung: true});
-      }
-    });
   }
-
-  public calculateAge(date: Date): number {
-    const birthDate = new Date(date);
+  validateAge(control: any) {
+    console.log(control.value);
+    const birthDate = new Date(control.value);
     const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    const age = today.getFullYear() - birthDate.getFullYear();
+    if (age < 18) {
+      return { minAge: true };
     }
-    return age;
+    return null;
   }
-
   public onSubmit() {
     if (this.registerForm.valid) {
       console.log('Form OK', this.registerForm.value);
       this.registerForm.reset();
+      this.toastr.success('Registration successful!', 'Success');
     }
   }
+
+  get name() { return this.registerForm.get('name'); }
+  get firstname() { return this.registerForm.get('firstname'); }
+  get email() { return this.registerForm.get('email'); }
+  get birthday() { return this.registerForm.get('birthday'); }
+  get city() { return this.registerForm.get('city'); }
+  get postalCode() { return this.registerForm.get('postalCode'); }
+
+
 }

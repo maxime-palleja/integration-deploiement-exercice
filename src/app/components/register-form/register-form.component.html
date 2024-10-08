@@ -1,34 +1,57 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div>
-    <label for="name">Nom:</label>
-    <input id="name" type="text" formControlName="name" placeholder="Nom">
+    <label for="name">Name :</label>
+    <input id="name" type="text" formControlName="name" placeholder="Name">
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+      <span class="error-message" *ngIf="name?.errors?.['required']">Name is required.</span>
+      <span class="error-message" *ngIf="name?.errors?.['pattern']">The name must not contain numbers or special characters.</span>
+    </div>
   </div>
 
   <div>
-    <label for="firstname">Prénom:</label>
-    <input id="firstname" type="text" formControlName="firstname" placeholder="Prénom">
+    <label for="firstname">First Name :</label>
+    <input id="firstname" type="text" formControlName="firstname" placeholder="First Name">
+    <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)">
+      <span class="error-message" *ngIf="firstname?.errors?.['required']">First name is required.</span>
+      <span class="error-message" *ngIf="firstname?.errors?.['pattern']">The first name must not contain numbers or special characters.</span>
+    </div>
   </div>
 
   <div>
-    <label for="email">Email:</label>
+    <label for="email">Email :</label>
     <input id="email" type="email" formControlName="email" placeholder="Email">
+    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+      <span class="error-message" *ngIf="email?.errors?.['required']">Email is required.</span>
+      <span class="error-message" *ngIf="email?.errors?.['email']">Invalid email format.</span>
+    </div>
   </div>
 
   <div>
-    <label for="birthday">Date de Naissance:</label>
+    <label for="birthday">Date of Birth :</label>
     <input id="birthday" type="date" formControlName="birthday">
+    <div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)">
+      <span class="error-message" *ngIf="birthday?.errors?.['required']">Date of birth is required.</span>
+      <span class="error-message" *ngIf="birthday?.errors?.['minAge']">You must be at least 18 years old.</span>
+    </div>
   </div>
 
   <div>
-    <label for="city">Ville:</label>
-    <input id="city" type="text" formControlName="city" placeholder="Ville">
+    <label for="city">City :</label>
+    <input id="city" type="text" formControlName="city" placeholder="City">
+    <div *ngIf="city?.invalid && (city?.dirty || city?.touched)">
+      <span class="error-message" *ngIf="city?.errors?.['required']">City is required.</span>
+      <span class="error-message" *ngIf="city?.errors?.['pattern']">The city must not contain numbers or special characters.</span>
+    </div>
   </div>
-
 
   <div>
-    <label for="postalCode">Code Postal:</label>
-    <input id="postalCode" type="text" formControlName="postalCode" placeholder="Code Postal">
+    <label for="postalCode">Postal Code :</label>
+    <input id="postalCode" type="text" formControlName="postalCode" placeholder="Postal Code">
+    <div *ngIf="postalCode?.invalid && (postalCode?.dirty || postalCode?.touched)">
+      <span class="error-message" *ngIf="postalCode?.errors?.['required']">Postal code is required.</span>
+      <span class="error-message" *ngIf="postalCode?.errors?.['pattern']">Invalid format, must be a 5-digit number.</span>
+    </div>
   </div>
 
-  <button type="submit" [disabled]="!registerForm.valid">S'inscrire</button>
+  <button type="submit" [disabled]="!registerForm.valid">Register</button>
 </form>
