@@ -7,8 +7,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "ng build --base-href https://github.com/maxime-palleja/integration-deploiement-exercice/",
-    "deploy": "ng deploy"
+    "build": "ng build --base-href=/integration-deploiement-exercice/",
+    "deploy": "ng deploy --base-href=/integration-deploiement-exercice/"
   },
   "private": true,
   "homepage": "",

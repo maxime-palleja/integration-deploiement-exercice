@@ -7,7 +7,7 @@ on:
 jobs:
   build_test:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [20.x]
@@ -32,9 +32,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: dist
+          path: dist/exercice2/browser
           if-no-files-found: error
-  deploy: 
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -46,4 +46,4 @@ jobs:
     steps:
      - name: Deploy to GitHub Pages
        id: deployment
-       uses: actions/deploy-pages@v2 
+       uses: actions/deploy-pages@v2
