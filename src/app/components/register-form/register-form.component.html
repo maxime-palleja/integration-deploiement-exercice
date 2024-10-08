@@ -1,0 +1,34 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nom:</label>
+    <input id="name" type="text" formControlName="name" placeholder="Nom">
+  </div>
+
+  <div>
+    <label for="firstname">Prénom:</label>
+    <input id="firstname" type="text" formControlName="firstname" placeholder="Prénom">
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email" placeholder="Email">
+  </div>
+
+  <div>
+    <label for="birthday">Date de Naissance:</label>
+    <input id="birthday" type="date" formControlName="birthday">
+  </div>
+
+  <div>
+    <label for="city">Ville:</label>
+    <input id="city" type="text" formControlName="city" placeholder="Ville">
+  </div>
+
+
+  <div>
+    <label for="postalCode">Code Postal:</label>
+    <input id="postalCode" type="text" formControlName="postalCode" placeholder="Code Postal">
+  </div>
+
+  <button type="submit" [disabled]="!registerForm.valid">S'inscrire</button>
+</form>
