@@ -52,8 +52,8 @@ jobs:
       - name: Prepare folder for deployment
         run: |
           mkdir -p deploy-root
-          cp -r dist/cours-1-1/browser/* deploy-root/
-          cp -r docs deploy-root/docs
+          cp -r ./dist/exercice2/browser/* deploy-root/
+          cp -r ./docs deploy-root/docs
 
       - name: Setup Pages
         id: pages
