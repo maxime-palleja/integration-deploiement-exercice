@@ -28,11 +28,11 @@ export class RegisterFormComponent {
    */
   constructor(private form: FormBuilder, private toastr: ToastrService) {
     this.registerForm = this.form.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-Z \'-àâäéèêëïîôöùûüç]*')]],
-      firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z \'-àâäéèêëïîôöùûüç]*')]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      firstname: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
       email: ['', [Validators.required, Validators.email]],
       birthday: ['', [Validators.required, this.checkBirthday]],
-      city: ['', [Validators.required, Validators.pattern('[a-zA-Z \'-àâäéèêëïîôöùûüç]*')]],
+      city: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s-]+$/)]],
       postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]]
     });
   }
@@ -59,7 +59,6 @@ export class RegisterFormComponent {
    */
   public onSubmit(): void {
     if (this.registerForm.valid) {
-      console.log('Form OK', this.registerForm.value);
       this.registerForm.reset();
       this.toastr.success('Registration successful!', 'Success');
     }

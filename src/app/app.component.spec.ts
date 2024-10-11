@@ -12,6 +12,6 @@ describe('AppComponent', () => {
   });
 
   it('should render the form title', () => {
-    expect(screen.getByText('Formulaire d\'inscription')).toBeTruthy();
+    expect(screen.getByText('Register')).toBeTruthy();
   });
 });
