@@ -1,0 +1,33 @@
+<div *ngIf="users.length > 0">
+  <h2>Users</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>First Name</th>
+      <th>Email</th>
+      <th>Birthday</th>
+      <th>City</th>
+      <th>Postal Code</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.firstname }}</td>
+      <td>{{ user.birthday }}</td>
+      <td>{{ user.city }}</td>
+      <td>{{ user.postalCode }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <button (click)="deleteUser(user.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -3,7 +3,7 @@
     "src"
   ],
   "entryPointStrategy": "expand",
-  "out": "docs",
+  "out": "public/docs",
   "exclude": [
     "/node_modules/",
     "*/.spec.ts"

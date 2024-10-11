@@ -62,7 +62,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: deploy-root
+          path: dist/exercice2/browser
           if-no-files-found: error
   deploy:
     environment:
@@ -76,6 +76,14 @@ jobs:
 
     needs: build_test
     steps:
-     - name: Deploy to GitHub Pages
-       id: deployment
-       uses: actions/deploy-pages@v2
+      - name: Deploy main content to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          path: /dist/exercice2/browser
+
+      - name: Deploy docs to GitHub Pages
+        uses: actions/deploy-pages@v2
+        with:
+          path: /docs
+          prefix: docs

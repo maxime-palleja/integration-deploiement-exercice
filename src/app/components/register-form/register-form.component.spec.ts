@@ -3,21 +3,15 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {render, screen, fireEvent} from '@testing-library/angular';
 import {RegisterFormComponent} from './register-form.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
-/**
- * Test suite for the RegisterFormComponent.
- */
 describe('RegisterFormComponent', () => {
-
-  /**
-   * Setup before each test.
-   * Renders the RegisterFormComponent with necessary imports.
-   */
   beforeEach(async () => {
     await render(RegisterFormComponent, {
-      imports: [ReactiveFormsModule, ToastrModule.forRoot(), BrowserAnimationsModule],
+      imports: [ReactiveFormsModule, ToastrModule.forRoot(), BrowserAnimationsModule, HttpClientModule],
     });
   });
+
 
   /**
    * Test to verify if the form fields are rendered correctly.
@@ -155,7 +149,7 @@ describe('RegisterFormComponent', () => {
    */
   it('should return null if the user is 18 or older', () => {
     const control = { value: '2000-10-10' };
-    const result = new RegisterFormComponent(new FormBuilder(), {} as ToastrService).checkBirthday(control);
+    const result = new RegisterFormComponent(new FormBuilder(), {} as ToastrService, {} as HttpClient).checkBirthday(control);
     expect(result).toBeNull();
   });
 
@@ -164,7 +158,7 @@ describe('RegisterFormComponent', () => {
    */
   it('should return an error object if the user is under 18', () => {
     const control = { value: '2010-10-10' };
-    const result = new RegisterFormComponent(new FormBuilder(), {} as ToastrService).checkBirthday(control);
+    const result = new RegisterFormComponent(new FormBuilder(), {} as ToastrService, {} as HttpClient).checkBirthday(control);
     expect(result).toEqual({ minAge: true });
   });
 
@@ -172,7 +166,7 @@ describe('RegisterFormComponent', () => {
    * Test to verify that form controls have null values initially.
    */
   it('should have null values for form controls initially', () => {
-    const component = new RegisterFormComponent(new FormBuilder(), {} as ToastrService);
+    const component = new RegisterFormComponent(new FormBuilder(), {} as ToastrService, {} as HttpClient);
 
     expect(component.name?.value).toEqual('');  // Name field
     expect(component.firstname?.value).toEqual('');   // First name field
@@ -186,7 +180,7 @@ describe('RegisterFormComponent', () => {
    * Test to verify that values can be correctly set and retrieved from form controls.
    */
   it('should set and retrieve values for form controls correctly', () => {
-    const component = new RegisterFormComponent(new FormBuilder(), {} as ToastrService);
+    const component = new RegisterFormComponent(new FormBuilder(), {} as ToastrService, {} as HttpClient);
 
     component.name?.setValue('Maxime');
     expect(component.name?.value).toBe('Maxime');
@@ -211,7 +205,7 @@ describe('RegisterFormComponent', () => {
    * Test to verify the form is reset after successful submission.
    */
   it('should reset the form after successful submission', async () => {
-    const component = new RegisterFormComponent(new FormBuilder(), {} as ToastrService);
+    const component = new RegisterFormComponent(new FormBuilder(), {} as ToastrService, {} as HttpClient);
     fireEvent.input(screen.getByLabelText('Name :'), { target: { value: 'Maxime' } });
     fireEvent.input(screen.getByLabelText('First Name :'), { target: { value: 'Dupont' } });
     fireEvent.input(screen.getByLabelText('Email :'), { target: { value: 'maxime@gmail.com' } });

@@ -1,3 +1,4 @@
-<h1>Register</h1>
-<app-register-form></app-register-form>
+<h1 class="title">Register</h1>
+<app-register-form (userAdded)="this.refreshUsers()"></app-register-form>
+<app-list-users #listUsersComponent></app-list-users>
 <router-outlet></router-outlet>

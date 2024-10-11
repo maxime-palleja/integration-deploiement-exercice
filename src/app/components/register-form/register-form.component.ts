@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
+import {Component, EventEmitter, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import {HttpClient} from "@angular/common/http";
+import {User} from "../../interfaces/user";
+import {environment} from "../../environment/environment";
 
 /**
  * Composant pour le formulaire d'inscription.
@@ -20,13 +23,19 @@ export class RegisterFormComponent {
   registerForm: FormGroup;
 
   /**
+   * Événement émis lorsqu'un utilisateur est ajouté.
+   * @type {EventEmitter<any>}
+   */
+  @Output() userAdded: EventEmitter<any> = new EventEmitter<any>();
+
+  /**
    * Constructeur du composant.
    * Initialise le formulaire avec les validations nécessaires.
    *
    * @param {FormBuilder} form - Injecte le service de création de formulaires.
    * @param {ToastrService} toastr - Injecte le service Toastr pour afficher des notifications.
    */
-  constructor(private form: FormBuilder, private toastr: ToastrService) {
+  constructor(private form: FormBuilder, private toastr: ToastrService, private httpClient: HttpClient) {
     this.registerForm = this.form.group({
       name: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
       firstname: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
@@ -48,7 +57,7 @@ export class RegisterFormComponent {
     const today = new Date();
     const age = today.getFullYear() - birthDate.getFullYear();
     if (age < 18) {
-      return { minAge: true };
+      return {minAge: true};
     }
     return null;
   }
@@ -59,6 +68,8 @@ export class RegisterFormComponent {
    */
   public onSubmit(): void {
     if (this.registerForm.valid) {
+      this.addUser(this.registerForm.value);
+      this.userAdded.emit("OK")
       this.registerForm.reset();
       this.toastr.success('Registration successful!', 'Success');
     }
@@ -94,5 +105,16 @@ export class RegisterFormComponent {
   /** @returns {AbstractControl | null} - Retourne le contrôle du champ 'postalCode'. */
   get postalCode() {
     return this.registerForm.get('postalCode');
+  }
+
+  /**
+   * Ajoute un utilisateur à la base de données.
+   * @param user
+   * @returns {void}
+   */
+  addUser(user: User): void {
+    this.httpClient.post<User>(environment.apiUrl, user).subscribe(user => {
+      this.userAdded.emit('userAdded');
+    });
   }
 }
