@@ -27,7 +27,7 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          
+
   build_test:
     runs-on: ubuntu-latest
 
@@ -47,6 +47,13 @@ jobs:
           npm ci
           npm run build --if-present
           npm run test:coverage
+          npm run doc
+
+      - name: Prepare folder for deployment
+        run: |
+          mkdir -p deploy-root
+          cp -r ./dist/cours-1-1/browser/* deploy-root/
+          cp -r ./docs deploy-root/docs
 
       - name: Setup Pages
         id: pages
@@ -55,16 +62,18 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: dist/exercice2/browser
+          path: deploy-root
           if-no-files-found: error
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     permissions:
       pages: write
       id-token: write
+
     needs: build_test
     steps:
      - name: Deploy to GitHub Pages

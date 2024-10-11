@@ -1,30 +1,81 @@
+
 [![codecov](https://codecov.io/github/maxime-palleja/integration-deploiement-exercice/graph/badge.svg?token=CH0CCESO0P)](https://codecov.io/github/maxime-palleja/integration-deploiement-exercice)
 
-# Exercice2
+# Exercice 2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Pour installer les dépendances, exécutez :
 
-## Code scaffolding
+```bash
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Serveur de développement
 
-## Build
+Pour lancer le serveur de développement, exécutez :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+ng serve
+```
 
-## Running unit tests
+Ensuite, naviguez vers `http://localhost:4200/`. L'application se rechargera automatiquement si vous modifiez l'un des fichiers sources.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Génération de code
 
-## Running end-to-end tests
+Pour générer un nouveau composant, exécutez :
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+ng generate component component-name
+```
 
-## Further help
+Vous pouvez également utiliser :
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng generate directive|pipe|service|class|guard|interface|enum|module
+```
 
+## Construction
+
+Pour construire le projet, exécutez :
+
+```bash
+ng build
+```
+
+Les artefacts de construction seront stockés dans le répertoire `dist/`.
+
+## Tests
+Pour les tests, nous utilisons [Jest](https://jestjs.io/fr/).
+Pour les exécuter, utilisez :
+
+```bash
+npm run test
+```
+Cela exécutera les tests.
+
+```bash
+npm run test:coverage
+```
+Cela exécutera les tests et générera un rapport de couverture.
+
+## Documentation
+Pour la documentation, nous utilisons [TypeDoc](https://typedoc.org/).
+Pour la générer, exécutez :
+
+```bash
+npm run doc
+```
+Il suffit ensuite d'ouvrir le fichier `documentation/index.html` dans un navigateur.
+
+## Aide supplémentaire
+
+Pour plus d'aide sur l'Angular CLI, utilisez :
+
+```bash
+ng help
+```
+
+Ou consultez la page [Angular CLI Overview and Command Reference](https://angular.io/cli).
