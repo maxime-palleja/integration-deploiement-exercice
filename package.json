@@ -8,7 +8,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "ng build --base-href=/integration-deploiement-exercice/",
-    "deploy": "ng deploy --base-href=/integration-deploiement-exercice/"
+    "deploy": "ng deploy --base-href=/integration-deploiement-exercice/",
+    "doc": "typedoc"
   },
   "private": true,
   "homepage": "",
@@ -39,6 +40,7 @@
     "jasmine-core": "~5.1.0",
     "jest": "^29.7.0",
     "jest-preset-angular": "^14.2.4",
+    "typedoc": "^0.26.8",
     "typescript": "~5.4.2"
   }
 }
