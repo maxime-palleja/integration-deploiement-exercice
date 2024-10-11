@@ -9,7 +9,7 @@
     "test:coverage": "jest --coverage",
     "build": "ng build --base-href=/integration-deploiement-exercice/",
     "deploy": "ng deploy --base-href=/integration-deploiement-exercice/",
-    "doc": "typedoc"
+    "doc": "typedoc --entryPoints src --out public/docs --exclude node_modules --exclude '**/*.spec.ts'"
   },
   "private": true,
   "homepage": "",
