@@ -5,6 +5,10 @@
 
 Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
+## Accès à l'application
+Pour accéder à l'application, rendez-vous sur [https://maxime-palleja.github.io/integration-deploiement-exercice/](https://maxime-palleja.github.io/integration-deploiement-exercice/).
+Pour accéder à la documentation, rendez-vous sur [https://maxime-palleja.github.io/integration-deploiement-exercice/documentation/](https://maxime-palleja.github.io/integration-deploiement-exercice/docs/).
+
 ## Installation
 
 Pour installer les dépendances, exécutez :
