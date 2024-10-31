@@ -49,7 +49,7 @@ jobs:
       - name: Prepare deployment folder
         run: |
           mkdir -p deploy-root
-          cp -r /dist/cours-1-1/browser/* deploy-folder/
+          cp -r /dist/exercice2/browser/* deploy-folder/
           cp -r /docs deploy-folder/docs
 
       - name: Setup Pages
