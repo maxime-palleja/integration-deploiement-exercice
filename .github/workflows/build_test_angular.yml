@@ -46,11 +46,12 @@ jobs:
           npm run build --if-present
           npm run test:coverage
           npm run doc
-      - name: Prepare deployment folder
+
+      - name: Prepare folder for deployment
         run: |
-          mkdir -p deploy-folder
-          cp -r /dist/maxime-palleja-ci-cd/browser/* deploy-folder/
-          cp -r /docs deploy-folder/docs
+          mkdir -p deploy-root
+          cp -r ./dist/maxime-palleja-ci-cd/browser/* deploy-root/
+          cp -r ./docs deploy-root/docs
 
       - name: Setup Pages
         id: pages
@@ -59,7 +60,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: dist/maxime-palleja-ci-cd/browser
+          path: deploy-root
 
       - name: Authenticate with npm
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
