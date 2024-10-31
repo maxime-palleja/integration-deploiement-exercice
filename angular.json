@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "exercice2": {
+    "maxime-palleja-ci-cd": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/exercice2",
+            "outputPath": "dist/maxime-palleja-ci-cd",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "exercice2:build:production"
+              "buildTarget": "maxime-palleja-ci-cd:build:production"
             },
             "development": {
-              "buildTarget": "exercice2:build:development"
+              "buildTarget": "maxime-palleja-ci-cd:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "exercice2:build"
+            "buildTarget": "maxime-palleja-ci-cd:build"
           }
         },
         "deploy": {
@@ -88,7 +88,7 @@
           "options": {
             "repo": "https://github.com/maxime-palleja/integration-deploiement-exercice.git",
             "branch": "gh-pages",
-            "dir": "dist/exercice2/browser"
+            "dir": "dist/maxime-palleja-ci-cd/browser"
           }
         }
       }
