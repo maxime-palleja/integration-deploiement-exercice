@@ -9,8 +9,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "deploy": "gh-pages -d dist/integration-deploiement-exercice --repo https://github.com/maxime-palleja/integration-deploiement-exercice.git",
-    "jsdoc": "typedoc"
+    "deploy": "ng deploy --base-href=/integration-deploiement-exercice/",
+    "doc": "typedoc"
   },
   "private": false,
   "homepage": "",
