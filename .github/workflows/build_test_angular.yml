@@ -60,6 +60,19 @@ jobs:
         with:
           path: dist/exercice2/browser
 
+      - name: Authenticate with npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: build and publish package on NPM
+        run: |
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git config --global user.name ${{ secrets.USER_NAME }}
+          npm run build-npm
+          npm version patch
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
   deploy:
     environment:
       name: github-pages
@@ -78,17 +91,6 @@ jobs:
         uses: actions/deploy-pages@v2
         with:
           path: dist/exercice2/browser
-
-      - name: build and publish package on NPM
-        run: |
-          git config --global user.email ${{ secrets.USER_EMAIL }}
-          git config --global user.name ${{ secrets.USER_NAME }}
-          npm run build-npm
-          npm version patch
-          ls
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Deploy docs to GitHub Pages
         uses: actions/deploy-pages@v2
