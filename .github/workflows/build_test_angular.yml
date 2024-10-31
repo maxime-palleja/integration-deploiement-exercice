@@ -46,6 +46,11 @@ jobs:
           npm run build --if-present
           npm run test:coverage
           npm run doc
+      - name: Prepare deployment folder
+        run: |
+          mkdir -p deploy-root
+          cp -r /dist/cours-1-1/browser/* deploy-folder/
+          cp -r /docs deploy-folder/docs
 
       - name: Setup Pages
         id: pages
