@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build": "ng build --base-href=/integration-deploiement-exercice/",
+    "build-npm": "cross-env NODE_ENV=production && rimraf dist && mkdir dist && npx babel src --out-dir dist --copy-files",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "ng build --base-href=/integration-deploiement-exercice/",
-    "build-npm": "cross-env NODE_ENV=production && rimraf dist && mkdir dist && npx babel src --out-dir dist --copy-files",
-    "deploy": "ng deploy --base-href=/integration-deploiement-exercice/",
-    "doc": "typedoc --entryPoints src --out public/docs --exclude node_modules --exclude '**/*.spec.ts'"
+    "deploy": "gh-pages -d dist/integration-deploiement-exercice --repo https://github.com/maxime-palleja/integration-deploiement-exercice.git",
+    "jsdoc": "typedoc"
   },
   "private": false,
   "homepage": "",
